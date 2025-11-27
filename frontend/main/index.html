@@ -1,0 +1,735 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>kushi-style Jewellery</title>
+  <meta name="description" content="Advanced single-file jewellery storefront (HTML/CSS/JS)." />
+  <!-- CSS for store -->
+  <style>
+    :root {
+      --gold: #F2C66D;
+      --dark: #443215;
+      --muted: #FAEDDB;
+    }
+
+    body {
+      background: #fffefa;
+      color: #2D2511;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 28px auto;
+      padding: 0 20px;
+      background: #fff;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+    }
+    .logoo img {
+      height: 48px;
+      width: auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(242, 198, 109, 0.18);
+    }
+    nav {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .search {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      padding: 8px 12px;
+      border-radius: 10px;
+      box-shadow: 0 4px 18px rgba(20,20,50,0.04);
+    }
+    .search input {
+      border: 0;
+      outline: none;
+      width: 220px;
+      font-size: 15px;
+    }
+    .icon-btn {
+      background: var(--muted);
+      padding: 8px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 500;
+      color: #886600;
+      border: none;
+      transition: background 0.15s;
+    }
+    .icon-btn:hover {
+      background: #ffefc7;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 28px;
+      align-items: center;
+      margin-top: 18px;
+    }
+    .hero-card {
+      background: linear-gradient(180deg, #fff, #fffef6);
+      padding: 28px;
+      border-radius: 18px;
+      box-shadow: 0 20px 40px rgba(17,17,17,0.06);
+    }
+    .hero h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .hero p {
+      color: #555;
+      margin-bottom: 18px;
+      font-size: 15px;
+    }
+    .cta {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 8px 18px rgba(184,137,47,0.12);
+      transition: background 0.19s;
+    }
+    .cta:hover {
+      background: #d6a53e;
+    }
+    .muted {
+      color: #666;
+      font-size: 13px;
+      opacity: 0.95;
+    }
+    .hero-visual {
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      height: 420px;
+      background: linear-gradient(160deg,#fff9f0 0%, #fff 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .folder-grid {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      justify-content: space-between;
+    }
+    .folder-item {
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.15s;
+    }
+    .folder-img {
+      height: 120px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 8px;
+      background: #f5f5f5;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .folder-item:hover .folder-img {
+      transform: translateY(-2px) scale(1.036);
+      box-shadow:0 6px 16px rgba(0,0,0,0.09);
+    }
+    .folder-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .folder-title {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--dark);
+      letter-spacing: 0.5px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+    @media (max-width:980px) {
+      .hero { grid-template-columns:1fr; }
+      .grid { grid-template-columns:repeat(2,1fr);}
+      .hero-visual{height:320px}
+    }
+    @media (max-width:640px) {
+      .grid { grid-template-columns:1fr;}
+      .search input { width:120px; }
+      .hero-card { padding:14px;}
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 14px;
+      overflow: hidden;
+      position: relative;
+      transition: transform .24s ease, box-shadow .25s ease;
+      border: 1px solid rgba(20,20,20,0.03);
+    }
+    .card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 20px 40px rgba(20,20,50,0.05);
+      border:1px solid #ffeccc;
+    }
+    .product-img {
+      height: 220px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: linear-gradient(180deg,#fff,#faf7f3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .product-img img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    .meta {
+      padding-top: 10px;
+    }
+    .title {
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 15.7px;
+      letter-spacing: 0.01em;
+    }
+    .price {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .badges {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: linear-gradient(90deg,var(--gold),#ffdca4);
+      padding: 6px 8px;
+      border-radius: 8px;
+      font-weight: 700;
+      color: #fff;
+      font-size: 12px;
+      letter-spacing: 0.7px;
+      box-shadow:0 2px 10px #fae5b3a6
+    }
+    .actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .btn {
+      flex: 1;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 0;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: background 0.16s, color 0.14s;
+      box-shadow: 0 2px 8px rgba(242,198,109,0.04);
+    }
+    .btn.primary {
+      background: var(--gold);
+      color: #fff;
+    }
+    .btn.primary:hover {
+      background: #e3b442;
+    }
+    .btn.ghost {
+      background: #fff;
+      border: 1px solid rgba(20,20,20,0.06);
+      color: #443215;
+    }
+    .btn.ghost:hover {
+      background: #fbf5e3;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,10,10,0.42);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 100;
+    }
+    .modal {
+      background: #fff;
+      width: min(860px,96%);
+      border-radius: 14px;
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      box-shadow:0 2px 40px #ecd49a50;
+      position: relative;
+    }
+    .modal .large-img {
+      height: 360px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #faf7f5;
+      margin-bottom: 12px;
+    }
+    .modal h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      color: var(--dark);
+    }
+    .close {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      cursor: pointer;
+      font-size: 21px;
+      color: #b1975e;
+      font-weight:900;
+      padding:3px 8px;
+      border-radius:6px;
+      transition: background 0.13s;
+    }
+    .close:hover {
+      background: #eee8d4;
+    }
+
+    .fade-in {
+      animation: fadeIn .6s ease both;
+    }
+    @keyframes fadeIn {
+      from{opacity:0;transform:translateY(8px)}
+      to{opacity:1;transform:none}
+    }
+    @keyframes searchPulse {
+      0% { box-shadow:0 0 0 0 rgba(242,198,109, 0.43);}
+      100% { box-shadow:0 0 0 4px rgba(242,198,109, .31);}
+    }
+    /* Additional footer styles */
+    footer {
+      margin: 36px 0 80px;
+      color: #555;
+      background: linear-gradient(90deg,#fffef8,#faf5e6);
+      padding:32px 0 12px 0;
+    }
+    .footer-grid {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .chip {
+      background: #fff;
+      padding: 10px 12px;
+      border-radius: 10px;
+    }
+    a {
+      color: #94600b;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    select {
+      border-radius: 7px;
+      font-size: 13px;
+      border: 1px solid #eee;
+      background: #fff9f2;
+      padding: 3px 8px;
+      color: #7a601f;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logoo">
+        <img src="https://www.khushijewellers.com/cdn/shop/files/logo_a336b66f-e96d-45db-a199-cb4b613e0d3a_400x.png?v=1624533635" alt="Khushi Jewellers Logo"/>
+      </div>
+      <nav>
+        <div class="pill active" data-filter="all" onclick="location.reload();">All</div>
+        <a class="pill" href="/gold" data-filter="gold">Gold</a>
+        <a class="pill" href="/Diamond" data-filter="diamond">Diamond</a>
+        <a class="pill" href="/pearl" data-filter="pearl">pearl</a>
+        <a class="pill" href="/Silver" data-filter="silver">Silver</a>
+      </nav>
+      <div class="controls">
+        <div class="search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="margin-right:8px"><path d="M21 21l-4.35-4.35" stroke="#666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="11" cy="11" r="6" stroke="#666" stroke-width="1.5"></circle></svg>
+          <input 
+            id="search" 
+            placeholder="Search jewellery, rings, earings..." 
+            autocomplete="off"
+            style="transition: box-shadow 0.3s, border 0.3s; animation:searchPulse 1.2s infinite alternate;"
+            onfocus="this.style.boxShadow='0 0 0 2px var(--gold, #F2C66D)';this.style.border='1.5px solid var(--gold, #F2C66D)';" 
+            onblur="this.style.boxShadow='none';this.style.border='';"
+          />
+        </div>
+        <div class="icon-btn" title="Login" onclick="location.href='/login'">Login</div>
+        <div class="icon-btn" title="Signup" onclick="location.href='/signup'">Signup</div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-card fade-in">
+        <h2 id="typing-effect"></h2>
+        <p id="typing-desc"></p>
+        <div style="display:flex;gap:12px;align-items:center">
+          <a class="cta" href="#">Shop Collections</a>
+          <div class="muted">Free shipping on orders over ₹10,000</div>
+        </div>
+        <div style="margin-top:18px">
+          <div style="display:flex;gap:10px;margin-top:12px">
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual fade-in">
+        <img src="https://mohsinkhawar.com/wp-content/uploads/2023/07/ay5a1080-1.jpg?w=2500&h=" alt="jewellery"/>
+      </div>
+      <div class="folder-grid">
+        <a class="folder-item" href="/gold" data-filter="gold">
+            <div class="folder-img">
+                <img src="https://scontent.fhyd10-1.fna.fbcdn.net/v/t39.30808-6/488258690_2449714288746804_2811430748481477939_n.jpg?stp=dst-jpg_s590x590_tt6&_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=zqiViKJi81kQ7kNvwEqhbO8&_nc_oc=AdnD6T7pLQsPw89sZLJrNh4gHWyb6DM_27xA3ild3T-kXeTZo1b-TIEDjvuVCVp_-MU&_nc_zt=23&_nc_ht=scontent.fhyd10-1.fna&_nc_gid=VvOUwd5o8L9Ajyv--Srmng&oh=00_AfhNcCuOGoi0TF0FD28o4H4uw9FZd7TxoIVQ0Z1geHQrEw&oe=692D1385" alt="Gold Jewellery"/>
+            </div>
+            <div class="folder-title">Gold</div>
+        </a>
+        <a class="folder-item" href="/Diamond" data-filter="diamond">
+            <div class="folder-img">
+                <img src="https://mohsinkhawar.com/wp-content/uploads/2023/07/ay5a9980.jpg?w=2500&h=" alt="Diamond Jewellery"/>
+            </div>
+            <div class="folder-title">Diamond</div>
+        </a>
+        <a class="folder-item" href="/pearl" data-filter="pearl">
+            <div class="folder-img">
+                <img src="https://i.pinimg.com/736x/60/4a/91/604a91f744b50c05c17c6bb167ca4187.jpg" alt="pearl Sets"/>
+            </div>
+            <div class="folder-title">pearl</div>
+        </a>
+        <a class="folder-item" href="/Silver" data-filter="silver">
+            <div class="folder-img">
+                <img src="https://i.pinimg.com/736x/55/9b/73/559b7344dc69de13831e41af79e05b8b.jpg" alt="Silver Jewellery"/>
+            </div>
+            <div class="folder-title">Silver</div>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <div class="grid" id="productGrid"></div>
+    </section>
+
+    <div style="margin-top:18px;display:flex;gap:12px;align-items:center;justify-content:space-between">
+      <div class="muted">Showing <span id="count">0</span> products</div>
+      <div class="muted">Sort by: <select id="sort">
+        <option value="pop">Popularity</option>
+        <option value="low">Price: Low to High</option>
+        <option value="high">Price: High to Low</option>
+      </select></div>
+    </div>
+
+    <footer>
+      <div class="footer-grid">
+        <div style="flex:2;min-width:220px;">
+          <div class="muted" style="font-weight:600;font-size:17px;letter-spacing:1px;margin-bottom:8px;">© Kushi Jewellers</div>
+          <div class="muted" style="font-size:13px;margin-bottom:14px;">For production, replace demo images and integrate backend for live inventory & secure checkout.</div>
+          <div style="margin-top:8px;font-size:11px;color:#bbb;">All rights reserved.</div>
+        </div>
+        <div style="flex:1;min-width:160px;">
+          <div class="muted" style="font-weight:600;margin-bottom:10px;">Contact Us</div>
+          <div class="muted" style="margin-bottom:4px;">Customer Care: <a href="tel:+919999999999" style="color: var(--gold);font-weight:500">+91 99999 99999</a></div>
+          <div class="muted">Email: <a href="mailto:support@kushijewellers.com" style="color: var(--gold);font-weight:500">support@kushijewellers.com</a></div>
+        </div>
+        <div style="flex:1;min-width:180px;">
+          <div class="muted" style="font-weight:600;margin-bottom:10px;">Quick Links</div>
+          <div>
+            <a href="/gold" style="color:var(--dark);font-size:13px;display:block;margin-bottom:3px;">Gold</a>
+            <a href="/diamond" style="color:var(--dark);font-size:13px;display:block;margin-bottom:3px;">Diamond</a>
+            <a href="/pearl" style="color:var(--dark);font-size:13px;display:block;margin-bottom:3px;">pearl</a>
+            <a href="/silver" style="color:var(--dark);font-size:13px;">Silver</a>
+          </div>
+        </div>
+      </div>
+      <div class="muted" style="margin-top:26px;font-size:11px;text-align:center;opacity:0.85">
+        Designed with ❤️ by Team Kushi · <a href="/privacy-policy" style="color:var(--gold)">Privacy Policy</a> · <a href="/tos" style="color:var(--gold)">Terms of Service</a>
+      </div>
+    </footer>
+  </div>
+
+  <div class="modal-backdrop" id="modal">
+    <div class="modal" role="dialog" aria-modal="true">
+      <div>
+        <div class="large-img" id="modalImg"><img src="" alt="" style="width:100%;height:100%;object-fit:contain"/></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center"><h3 id="modalTitle">Title</h3><div class="close" id="closeBtn">✕</div></div>
+        <div class="muted" id="modalDesc">Description</div>
+        <div style="margin-top:12px"><div class="price" id="modalPrice">₹0</div></div>
+        <div style="margin-top:18px;display:flex;gap:10px">
+          <button class="btn primary">Buy Now</button>
+          <a class="btn ghost" id="visitPage" href="#" target="_blank">Visit Product Page</a>
+        </div>
+        <div style="margin-top:14px" class="muted">Share: <button class="icon-btn">WhatsApp</button> <button class="icon-btn">Instagram</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Effects and store scripts -->
+  <script>
+    // Animated typing effect in the search box
+    const phrases = [
+      "Search jewellery...",
+      "Search pearl...",
+      "Search rings...",
+      "Search Silver...",
+      "Search gold..."
+    ];
+    const searchInput = document.getElementById('search');
+    let phraseIdx = 0, charIdx = 0, typing = true;
+
+    function typePhrase() {
+      if(!searchInput) return;
+      const phrase = phrases[phraseIdx];
+      if(typing) {
+        if(charIdx <= phrase.length) {
+          searchInput.setAttribute('placeholder', phrase.substring(0, charIdx));
+          charIdx++;
+          setTimeout(typePhrase, 65);
+        } else {
+          typing = false;
+          setTimeout(typePhrase, 900);
+        }
+      } else {
+        if(charIdx > 0) {
+          searchInput.setAttribute('placeholder', phrase.substring(0, charIdx - 1));
+          charIdx--;
+          setTimeout(typePhrase, 28);
+        } else {
+          typing = true;
+          phraseIdx = (phraseIdx + 1) % phrases.length;
+          setTimeout(typePhrase, 350);
+        }
+      }
+    }
+    setTimeout(typePhrase, 900);
+
+    // Hero typing effect for h2 and p
+    const titles = ["Exquisite craftsmanship.\nTimeless tradition."];
+    const descriptions = ["Discover curated collections — from everyday gold to show-stopping pearl sets.\nHandpicked, hallmarked and ready for you."];
+
+    function type(element, text, delay = 30, cb) {
+      let idx = 0;
+      function typeChar() {
+        if (idx < text.length) {
+          if (text[idx] === "\n") {
+            element.innerHTML += "<br/>";
+          } else {
+            element.innerHTML += text[idx];
+          }
+          idx++;
+          setTimeout(typeChar, delay);
+        } else if (cb) {
+          cb();
+        }
+      }
+      typeChar();
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const h2 = document.getElementById("typing-effect");
+      const p = document.getElementById("typing-desc");
+      type(h2, titles[0], 38, function() {
+        type(p, descriptions[0], 17);
+      });
+    });
+
+    // Sample product data (replace with real images & data)
+    const products = [
+      {id:1,title:'22K Gold Necklace',cat:'gold',price:45000,img:'https://cdn2.storyasset.link/3ba28e41-987c-4d3f-8fe1-216cb654ddd3/950_%283%29-ukgafmtqhe.jpg',desc:'Elegant 22K gold necklace, traditional meenakari finish.', url: '/gold/necklace-1'},
+      {id:2,title:'Diamond Ring',cat:'diamond',price:85000,img:'https://i.pinimg.com/1200x/7a/90/ed/7a90ed6850e279b17027a55d61da11be.jpg',desc:'Solitaire diamond ring with certified GIA stone.', url: '/diamond/ring-1'},
+      {id:3,title:'pearl Set - Inaya',cat:'pearl',price:225000,img:'https://staticimg.amarujala.com/assets/images/2022/10/03/hanaya-aamara_1664796915.jpeg?q=80&w=480&dpr=2.6',desc:'Intricate pearl jadau set.', url: '/pearl/set-inaya'},
+      {id:4,title:'Silver Earrings',cat:'silver',price:2200,img:'https://www.masala.com/cloud/2025/01/03/Snapinsta.app_472006646_3961356290812026_3033072882723459922_n_1080.jpg',desc:'Classic silver drop earrings.', url: '/silver/earrings-1', imgStyle: 'width:100%;height:100%;object-fit:cover;object-position:center;display:block;'},
+      {id:5,title:'Gold Bangle',cat:'gold',price:15500,img:'https://www.alacouture.com/cdn/shop/files/faizasaqlain_3467752332941416348_1733229654.jpg?v=1745350545&width=1080',desc:'Handcrafted gold bangle with floral motif.', url: '/gold/bangle-1'},
+      {id:6,title:'Diamond Pendant',cat:'diamond',price:48000,img:'https://i.pinimg.com/736x/38/17/b7/3817b702db7bf5c0e76fce16dd0b84e6.jpg',desc:'Sparkling diamond pendant.', url: '/diamond/pendant-1'}
+    ];
+    const grid = document.getElementById('productGrid');
+    const countEl = document.getElementById('count');
+    const modal = document.getElementById('modal');
+    const modalImg = document.querySelector('#modalImg img');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalPrice = document.getElementById('modalPrice');
+    const closeBtn = document.getElementById('closeBtn');
+    const visitPageBtn = document.getElementById('visitPage');
+
+    function render(list){
+      grid.innerHTML = '';
+      list.forEach(p=>{
+        const card = document.createElement('div'); card.className='card fade-in';
+        card.innerHTML = `
+          <div class="badges">${p.cat.toUpperCase()}</div>
+          <div class="product-img"><img src="${p.img}" alt="${p.title}"/></div>
+          <div class="meta">
+            <div class="title">${p.title}</div>
+            <div class="muted">SKU: PJ-${p.id}</div>
+            <div class="price">₹${p.price.toLocaleString('en-IN')}</div>
+            <div class="actions">
+              <button class="btn primary" data-id="${p.id}">Quick View</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+      countEl.textContent = list.length;
+      // attach quick view listeners
+      document.querySelectorAll('.btn.primary').forEach(b=>b.addEventListener('click',ev=>{
+        const id = Number(ev.currentTarget.dataset.id);
+        openModal(products.find(x=>x.id===id));
+      }));
+      // Removed Add to cart (btn.ghost) handler per instructions
+    }
+
+    function openModal(product){
+      // If the user is viewing gold item, send to gold page; same for all categories
+      if (product.cat === 'gold') {
+        window.location.href = '/gold/';
+        return;
+      } else if (product.cat === 'diamond') {
+        window.location.href = '/Diamond/';
+        return;
+      } else if (product.cat === 'pearl') {
+        window.location.href = '/pearl/';
+        return;
+      } else if (product.cat === 'silver') {
+        window.location.href = '/Silver/';
+        return;
+      }
+      // Fallback if not a known category
+      modalImg.src = product.img;
+      modalTitle.textContent = product.title;
+      modalDesc.textContent = product.desc;
+      modalPrice.textContent = '₹' + product.price.toLocaleString('en-IN');
+      visitPageBtn.href = product.url || "#";
+      modal.style.display = 'flex';
+    }
+
+    closeBtn.addEventListener('click', ()=> modal.style.display='none');
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.style.display='none' });
+
+    // Filters (unchanged - but can stay as usability backup)
+    document.querySelectorAll('.pill').forEach(pill=>{
+      pill.addEventListener('click', (e)=>{
+        const filter = pill.dataset.filter;
+        if (filter) {
+          // If user clicks a filter for a category, go to that page
+          if (filter === 'all') {
+            window.location.href = '/';
+          } else if (filter === 'gold') {
+            window.location.href = '/gold/';
+          } else if (filter === 'diamond') {
+            window.location.href = '/Diamond/';
+          } else if (filter === 'pearl') {
+            window.location.href = '/pearl/';
+          } else if (filter === 'silver') {
+            window.location.href = '/Silver/';
+          }
+          e.preventDefault();
+        }
+      });
+    });
+    // "folder-item" grid click -- makes sure these also redirect by JS for robustness
+    document.querySelectorAll('.folder-item').forEach(item=>{
+      item.addEventListener('click', e=>{
+        const filter = item.dataset.filter;
+        if (filter === 'gold') {
+          window.location.href = '/gold/';
+        } else if (filter === 'diamond') {
+          window.location.href = '/Diamond/';
+        } else if (filter === 'pearl') {
+          window.location.href = '/pearl/';
+        } else if (filter === 'silver') {
+          window.location.href = '/Silver/';
+        }
+        e.preventDefault();
+      });
+    });
+
+    // Search
+    document.getElementById('search').addEventListener('input', (e)=>{
+      const q = e.target.value.trim().toLowerCase();
+      const activePill = document.querySelector('.pill.active');
+      const active = activePill && activePill.dataset.filter ? activePill.dataset.filter : 'all';
+      let list = products.filter(p=> (active==='all' || p.cat===active) );
+      if(q) list = list.filter(p=> p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q));
+      // apply current sort
+      applySort(list, document.getElementById('sort').value);
+      render(list);
+    });
+
+    // Sort
+    document.getElementById('sort').addEventListener('change', (e)=>{
+      const activePill = document.querySelector('.pill.active');
+      const active = activePill && activePill.dataset.filter ? activePill.dataset.filter : 'all';
+      applyFilterAndSort(active, e.target.value);
+    });
+
+    function applyFilterAndSort(filter, sortKey){
+      let list = products.filter(p=> (filter==='all' || p.cat===filter) );
+      applySort(list, sortKey);
+      render(list);
+    }
+
+    function applySort(list, key){
+      if(key==='low') list.sort((a,b)=>a.price-b.price);
+      else if(key==='high') list.sort((a,b)=>b.price-a.price);
+      else list.sort((a,b)=>a.id-b.id);
+    }
+
+    // initial render, only show all if NOT a specific category page
+    // (If using separate pages for each, you can customize this per page)
+    applyFilterAndSort('all','pop');
+
+    // small: enable keyboard close
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') modal.style.display='none' });
+  </script>
+</body>
+</html>
