@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Khushi Gold Jewalli</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<style>
+    :root {
+  --bg: #0b0b0c;
+  --text: #f7f5f2;
+  --muted: #c9c3b8;
+  --gold-1: #f7d08a;
+  --gold-2: #d7a74f;
+  --gold-3: #8c6b2d;
+  --accent: #c28c3b;
+  --glass: rgba(255, 255, 255, 0.06);
+  --shadow: rgba(0, 0, 0, 0.35);
+}
+
+* { box-sizing: border-box }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(1200px 600px at 70% 10%, #121213, var(--bg));
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+}
+
+/* Nav */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 32px;
+  background: linear-gradient(to bottom, rgba(11,11,12,0.7), rgba(11,11,12,0.25));
+  backdrop-filter: blur(8px);
+  z-index: 50;
+}
+.nav__brand { font-weight: 700; letter-spacing: 0.6px }
+.nav__links a {
+  color: var(--muted);
+  text-decoration: none;
+  margin-left: 18px;
+  transition: color .2s ease;
+}
+.nav__links a:hover { color: var(--text) }
+.btn {
+  display: inline-block;
+  border: 1px solid transparent;
+  padding: 10px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+}
+.btn--outline { border-color: #2a2a2d; color: var(--muted) }
+.btn--gold {
+  background: linear-gradient(135deg, var(--gold-1), var(--gold-2) 60%, var(--gold-3));
+  color: #1a1207;
+  box-shadow: 0 6px 18px rgba(214, 163, 73, 0.35);
+}
+.btn--ghost {
+  background: transparent; color: var(--text);
+  border-color: #343437;
+}
+.btn:hover { transform: translateY(-2px) }
+
+/* Hero */
+.hero {
+  min-height: 100vh;
+  display: grid; place-items: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 72px;
+}
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.halo {
+  position: absolute;
+  width: 65vmax; height: 65vmax;
+  left: 50%; top: 10%;
+  transform: translate(-50%, -10%);
+  background: radial-gradient(circle at 50% 50%, rgba(247,208,138,0.35), rgba(247,208,138,0.06) 40%, transparent 60%);
+  filter: blur(22px);
+  animation: haloPulse 9s ease-in-out infinite alternate;
+}
+@keyframes haloPulse {
+  from { transform: translate(-50%, -12%) scale(0.98) }
+  to   { transform: translate(-50%, -8%)  scale(1.02) }
+}
+.hero__content {
+  position: relative; z-index: 2;
+  text-align: center; max-width: 860px; padding: 0 20px;
+}
+.hero__content h1 {
+  font-size: clamp(36px, 6vw, 76px);
+  line-height: 1.05;
+  margin-bottom: 14px;
+}
+.hero__content p {
+  color: var(--muted);
+  font-size: clamp(16px, 2vw, 20px);
+  margin-bottom: 22px;
+}
+.cta { display: inline-flex; gap: 14px }
+
+/* Shine effect on heading */
+.shine {
+  background: linear-gradient(90deg, #fff, var(--gold-1), #fff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shineSweep 6s ease-in-out infinite;
+  background-size: 200% 100%;
+}
+@keyframes shineSweep {
+  0% { background-position: -20% 0 }
+  50% { background-position: 120% 0 }
+  100% { background-position: -20% 0 }
+}
+
+/* Section */
+.section {
+  max-width: 1200px; margin: 0 auto; padding: 90px 24px;
+}
+.section--contrast {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent 40%);
+}
+
+/* Grid cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+.card {
+  background: #121212;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px var(--shadow);
+  transform: translateY(0);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.card:hover { transform: translateY(-4px) }
+.card__image {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+.card__image img {
+  width: 100%; height: 100%; object-fit: cover;
+  transform: scale(1.02);
+  transition: transform .5s ease;
+}
+.card:hover .card__image img { transform: scale(1.06) }
+.card__body { padding: 16px }
+.price { color: var(--gold-1); font-weight: 600; margin: 8px 0 12px }
+.btn--mini { padding: 8px 12px; font-size: 14px }
+
+/* Tilt hover */
+.tilt {
+  perspective: 800px;
+}
+.tilt:hover {
+  transform: translateY(-6px);
+}
+.tilt:hover .card__image img {
+  transform: scale(1.06) rotateZ(0.2deg);
+}
+
+/* Shine sweep over product */
+.shine-sweep {
+  position: absolute; inset: 0;
+  background: linear-gradient(120deg, transparent 20%, rgba(255,255,255,0.15) 35%, transparent 50%);
+  transform: translateX(-100%);
+  animation: sweep 3.8s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes sweep {
+  0% { transform: translateX(-120%) }
+  60% { transform: translateX(140%) }
+  100% { transform: translateX(140%) }
+}
+
+/* Split section */
+.split {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 28px;
+  align-items: center;
+}
+.split__media img {
+  width: 100%; border-radius: 14px;
+  box-shadow: 0 12px 30px var(--shadow);
+}
+.features { list-style: none; padding: 0; margin: 16px 0 0 }
+.features li { margin: 8px 0; color: var(--muted) }
+
+/* Glass panel */
+.glass {
+  background: var(--glass);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  padding: 18px;
+  border-radius: 12px;
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid #1f1f22;
+  margin-top: 40px;
+  padding: 40px 24px;
+  background: #0e0e10;
+}
+.footer__grid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.footer__brand {
+  max-width: 1200px; margin: 20px auto 0;
+  color: #a7a7aa;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.is-visible {
+  opacity: 1; transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .grid { grid-template-columns: repeat(2, 1fr) }
+  .split { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr }
+  .nav { padding: 12px 16px }
+  .cta { flex-wrap: wrap; justify-content: center }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .halo, .shine, .shine-sweep { animation: none }
+}
+.checkout-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(17,15,15,0.81);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .4s cubic-bezier(.9,0,.3,1);
+}
+.checkout-modal.show {
+  visibility: visible;
+  opacity: 1;
+}
+.checkout-content {
+  background: #191818cc;
+  color: var(--text);
+  border-radius: 22px;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.45);
+  padding: 36px 26px 28px 26px;
+  min-width: 340px;
+  max-width: 98vw;
+  width: 380px;
+  position: relative;
+  animation: fadeIn .5s cubic-bezier(.85,0,.25,1);
+}
+@keyframes fadeIn {
+  from {transform: translateY(32px) scale(0.97); opacity: 0;}
+  to {transform: translateY(0px) scale(1); opacity: 1;}
+}
+.checkout-content h2 {
+  margin-top: 0;
+  margin-bottom: 18px;
+  font-size: 2rem;
+  text-align: center;
+}
+.checkout-content .checkout-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  background: var(--glass);
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+.checkout-item img {
+  width: 58px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #0b0b0c;
+  box-shadow: 0 2px 7px rgba(173,121,32,0.13);
+  border: 1px solid #322c1c55;
+}
+.checkout-item-details h4 {margin:0 0 3px 0;}
+.checkout-item-details .price {margin: 0; color: var(--gold-1);}
+.checkout-form label {
+  font-size: 15px;
+}
+
+.checkout-form input, .checkout-form select {
+  width: 100%;
+  padding: 9px 10px;
+  margin-top: 5px;
+  margin-bottom: 14px;
+  border-radius: 7px;
+  border: 1px solid #24211b;
+  background: #25211c;
+  color: var(--text);
+  font-size: 16px;
+}
+.checkout-form input:focus {outline:2px solid var(--accent);}
+.checkout-form .checkout-btn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--gold-1), var(--gold-2) 60%, var(--gold-3));
+  color: #372007;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 7px;
+  padding: 12px 0;
+  margin-top: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(214,163,73,0.28);
+  transition: background .2s, color .2s;
+}
+.checkout-close {
+  position: absolute;
+  top: 9px; right: 13px;
+  background: transparent;
+  border: none;
+  color: #e1b253;
+  font-size: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  line-height: 1;
+  padding: 0;
+  transition: color .2s;
+}
+.checkout-close:hover { color: #ffecbb;}
+.checkout-success {
+  background: #155619d0;
+  color: #f7d08a;
+  border-radius: 12px;
+  padding: 18px;
+  text-align: center;
+  margin-top: 22px;
+  font-size: 1rem;
+  border: 1px solid var(--gold-1);
+  box-shadow: 0 4px 16px rgba(214,163,73,0.15);
+}
+</style>
+<body>
+  <header class="nav">
+    <div class="nav__brand">
+      <img src="https://www.khushijewellers.com/cdn/shop/files/logo_a336b66f-e96d-45db-a199-cb4b613e0d3a_400x.png?v=1624533635" alt="Gold Jewalli Logo" style="height:38px; vertical-align:middle; margin-right:10px;">
+      
+    </div>
+    <nav class="nav__links">
+      <a href="#collections">Collections</a>
+      <a href="#craft">Craft</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="btn btn--outline">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero__bg">
+      <div class="halo"></div>
+      <canvas id="sparkCanvas" aria-hidden="true"></canvas>
+    </div>
+    <div class="hero__content">
+      <h1 class="shine">Where Gold Meets Grace</h1>
+      <p>Handcrafted pieces with a modern soul—radiance you can wear.</p>
+      <div class="cta">
+        <a href="#collections" class="btn btn--gold">Explore Collection</a>
+        <a href="#craft" class="btn btn--ghost">Our Craft</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="collections" class="section reveal">
+    <header class="section__header">
+      <h2>Signature Collection</h2>
+      <p>Curated designs that capture light, lineage, and luxury.</p>
+    </header>
+    <div class="grid">
+      <!-- Card 1 -->
+      <article class="card tilt">
+        <div class="card__image">
+          <img src="https://www.goldstore60.com/storage/products/20/09/d567db1e8de61430980a1a749ce87693.jpg" alt="24k gold ring with delicate filigree" />
+          <span class="shine-sweep"></span>
+        </div>
+        <div class="card__body">
+          <h3>Filigree Ring</h3>
+          <p>Intricate vines sculpted in luminous 22k gold.</p>
+          <div class="price">₹39,900</div>
+          <button class="btn btn--mini btn--gold btn-view-details"
+            data-name="Filigree Ring"
+            data-price="₹39,900"
+            data-img="assets/ring.jpg"
+          >checkout</button>
+        </div>
+      </article>
+      <!-- Card 2 -->
+      <article class="card tilt">
+        <div class="card__image">
+          <img src="https://img.freepik.com/premium-photo/radiant-traditions-indian-traditional-gold-necklace-glowing-elegance_954894-49730.jpg" alt="Gold necklace with radiant motifs" />
+          <span class="shine-sweep"></span>
+        </div>
+        <div class="card__body">
+          <h3>Radiant Necklace</h3>
+          <p>A constellation of motifs, crafted to feel weightless.</p>
+          <div class="price">₹1,24,500</div>
+          <button class="btn btn--mini btn--gold btn-view-details"
+            data-name="Radiant Necklace"
+            data-price="₹1,24,500"
+            data-img="https://img.freepik.com/premium-photo/radiant-traditions-indian-traditional-gold-necklace-glowing-elegance_954894-49730.jpg"
+          >checkout</button>
+        </div>
+      </article>
+      <!-- Card 3 -->
+      <article class="card tilt">
+        <div class="card__image">
+          <img src="https://i.etsystatic.com/14214903/r/il/f2a97f/1442952584/il_fullxfull.1442952584_mfmc.jpg" alt="Textured gold bangle with brushed finish" />
+          <span class="shine-sweep"></span>
+        </div>
+        <div class="card__body">
+          <h3>Brushed Bangle</h3>
+          <p>Matte texture meets a gentle inner glow.</p>
+          <div class="price">₹54,800</div>
+          <button class="btn btn--mini btn--gold btn-view-details"
+            data-name="Brushed Bangle"
+            data-price="₹54,800"
+            data-img="https://i.etsystatic.com/14214903/r/il/f2a97f/1442952584/il_fullxfull.1442952584_mfmc.jpg"
+          >checkout</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="craft" class="section reveal section--contrast">
+    <div class="split">
+      <div class="split__media">
+        <img src="https://i.etsystatic.com/5711157/r/il/d7b51c/4884781420/il_1080xN.4884781420_tgve.jpg" alt="Artisan shaping gold jewelry" />
+      </div>
+      <div class="split__content">
+        <h2>The Craft</h2>
+        <p>Every curve is a memory, every facet a story. Our gold is responsibly sourced and shaped by artisans who hold tradition and innovation in equal measure.</p>
+        <ul class="features">
+          <li><strong>Ethical sourcing:</strong> Traceable, responsibly refined gold.</li>
+          <li><strong>Precision craftsmanship:</strong> Time-honored techniques with modern tooling.</li>
+          <li><strong>Lasting finish:</strong> Designed to wear beautifully, day after day.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section reveal">
+    <header class="section__header">
+      <h2>About khushi Gold Jewalli</h2>
+      <p>Born in Hyderabad, inspired by the world—we design for those who carry warmth and confidence.</p>
+    </header>
+    <div class="about__panel glass">
+      <p>We believe gold is more than a metal. It’s a feeling: quiet, steady, luminous. Our pieces amplify that feeling without shouting.</p>
+    </div>
+  </section>
+
+  <footer id="contact" class="footer">
+    <div class="footer__grid">
+      <div>
+        <h3>Visit</h3>
+        <p>Alwal, Telangana, India</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p>Khushi@goldjewalli.com</p>
+      </div>
+      <div>
+       
+      </div>
+    </div>
+    <div class="footer__brand">© Khushi Gold Jewalli</div>
+  </footer>
+  <div class="checkout-modal" id="checkout-modal" aria-modal="true" tabindex="-1">
+    <div class="checkout-content" role="dialog" aria-labelledby="checkout-title">
+      <button class="checkout-close" aria-label="close checkout">&times;</button>
+      <h2 id="checkout-title">Checkout</h2>
+      <div class="checkout-item" id="checkout-item">
+        <img src="" alt="" id="checkout-item-img">
+        <div class="checkout-item-details">
+          <h4 id="checkout-item-name"></h4>
+          <div class="price" id="checkout-item-price"></div>
+        </div>
+      </div>
+      <form class="checkout-form" id="checkout-form" autocomplete="on">
+        <label>
+          Name
+          <input name="name" type="text" placeholder="Your Name" required autocomplete="name"/>
+        </label>
+        <label>
+          Email
+          <input name="email" type="email" placeholder="you@email.com" required autocomplete="email"/>
+        </label>
+        <label>
+          Address
+          <input name="address" type="text" placeholder="Address" required autocomplete="street-address"/>
+        </label>
+        <label>
+          City
+          <input name="city" type="text" required autocomplete="address-level2"/>
+        </label>
+        <label>
+          Payment Method
+          <select name="payment" required>
+            <option value="">Select</option>
+            <option>UPI</option>
+            <option>Credit Card</option>
+            <option>Debit Card</option>
+            <option>Cash on Delivery</option>
+          </select>
+        </label>
+        <button type="submit" class="checkout-btn btn btn--gold">Place Order</button>
+      </form>
+      <div class="checkout-success" id="checkout-success" style="display:none;">
+        Thank you! Your order has been placed and will be confirmed soon.
+      </div>
+    </div>
+  </div>
+  <style>
+    
+  </style>
+
+  <script>
+    // Parallax halo + sparkles + scroll reveal + hover polish
+
+// Parallax: subtle movement of halo with mouse
+const halo = document.querySelector('.halo');
+window.addEventListener('mousemove', (e) => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 14;
+  const y = (e.clientY / window.innerHeight - 0.5) * 10;
+  halo.style.transform = `translate(calc(-50% + ${x}px), calc(-10% + ${y}px)) scale(1.02)`;
+});
+
+// Sparkle particles on canvas
+const canvas = document.getElementById('sparkCanvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+function createParticles(count = 80) {
+  particles = Array.from({ length: count }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 1.6 + 0.6,
+    a: Math.random() * Math.PI * 2,
+    s: Math.random() * 0.5 + 0.1,
+    glow: Math.random() * 0.6 + 0.2
+  }));
+}
+createParticles();
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (const p of particles) {
+    p.a += p.s * 0.015;
+    p.x += Math.cos(p.a) * 0.15;
+    p.y += Math.sin(p.a) * 0.10;
+
+    // wrap
+    if (p.x < 0) p.x = canvas.width;
+    if (p.x > canvas.width) p.x = 0;
+    if (p.y < 0) p.y = canvas.height;
+    if (p.y > canvas.height) p.y = 0;
+
+    const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 8);
+    grad.addColorStop(0, `rgba(247,208,138,${0.9 * p.glow})`);
+    grad.addColorStop(1, 'rgba(247,208,138,0)');
+
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('is-visible');
+    });
+  },
+  { threshold: 0.14 }
+);
+reveals.forEach(el => observer.observe(el));
+
+// Magnetic CTA hover
+document.querySelectorAll('.btn--gold').forEach(btn => {
+  btn.addEventListener('mousemove', (e) => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    btn.style.transform = `translate(${x * 0.08}px, ${y * 0.12}px)`;
+    btn.style.boxShadow = `0 10px 24px rgba(214,163,73,0.45)`;
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = 'translate(0,0)';
+    btn.style.boxShadow = `0 6px 18px rgba(214,163,73,0.35)`;
+  });
+});
+
+// ---- MODAL Checkout ----
+
+// Helper for escape close
+function closeCheckoutModal() {
+  document.getElementById('checkout-modal').classList.remove('show');
+}
+
+// Show the checkout modal with correct product
+document.querySelectorAll('.btn-view-details').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    const modal = document.getElementById('checkout-modal');
+    const itemName = this.getAttribute('data-name');
+    const itemPrice = this.getAttribute('data-price');
+    const itemImg = this.getAttribute('data-img');
+    document.getElementById('checkout-item-img').src = itemImg;
+    document.getElementById('checkout-item-img').alt = itemName;
+    document.getElementById('checkout-item-name').textContent = itemName;
+    document.getElementById('checkout-item-price').textContent = itemPrice;
+    document.getElementById('checkout-form').reset();
+    document.getElementById('checkout-success').style.display = "none";
+    modal.classList.add('show');
+    setTimeout(() => {
+      modal.focus();
+    }, 100);
+  });
+});
+
+// Modal close button
+document.querySelector('.checkout-close').addEventListener('click', closeCheckoutModal);
+// Modal close on outside click
+document.getElementById('checkout-modal').addEventListener('click', function(e){
+  if(e.target === this) closeCheckoutModal();
+});
+// Modal close on escape
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') closeCheckoutModal();
+});
+
+// Checkout form submit
+document.getElementById('checkout-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  // Here you could send the order via AJAX.
+  document.getElementById('checkout-success').style.display = "block";
+  this.style.display = "none";
+  setTimeout(()=>{
+    closeCheckoutModal();
+    this.style.display="block";
+    document.getElementById('checkout-success').style.display="none";
+  }, 3700);
+});
+
+// Respect reduced motion
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (prefersReducedMotion) {
+  window.removeEventListener('mousemove', () => {});
+  // stop canvas animation gracefully
+  cancelAnimationFrame(draw);
+}
+  </script>
+</body>
+</html>
