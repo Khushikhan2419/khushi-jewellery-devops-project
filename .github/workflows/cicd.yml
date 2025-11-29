@@ -7,11 +7,8 @@ on:
 
 env:
   AWS_REGION: sa-east-1
-  ECR_REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-northeast-1.amazonaws.com
-
-  # ✔ Updated with your required paths
+  ECR_REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.sa-east-1.amazonaws.com
   FRONTEND_SERVICES: "gold diamond pearl silver"
-
   BACKEND_SERVICE: "backend"
 
 permissions:
@@ -36,6 +33,12 @@ jobs:
 
       - name: 📦 Login to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v2
+
+      # Optional: debug Docker login if needed
+      - name: 🔍 Debug Docker login
+        run: |
+          aws ecr get-login-password --region ${{ env.AWS_REGION }} | \
+          docker login --username AWS --password-stdin ${{ env.ECR_REGISTRY }}
 
       - name: 🛠 Build and Push Docker Images
         run: |
@@ -100,10 +103,8 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             echo "🔄 Starting deployment on EC2..."
-
             cd /home/ec2-user
 
-            # ✔ Updated repo name here
             if [ -d "khushi-jewellery-devops-project" ]; then
               echo "📥 Pulling latest code..."
               cd khushi-jewellery-devops-project
