@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: main
-          image: <AWS_ECR_REGISTRY>/main:latest
+          image: 049061799945.dkr.ecr.sa-east-1.amazonaws.com/shopping-site-main:8dbefcb4ffaabf3d2f2ba6375d36aa29ba3dcfe2
           ports:
             - containerPort: 80
