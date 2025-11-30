@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: gold
-          image: 049061799945.dkr.ecr.sa-east-1.amazonaws.com/shopping-site-gold:6866f49c099c0795d6f4b759da4e7768c6e58cc7
+          image: 049061799945.dkr.ecr.sa-east-1.amazonaws.com/shopping-site-gold:75a0ebba2140b55c68859b4105f87daf25639ac8
           ports:
             - containerPort: 80
