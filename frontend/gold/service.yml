@@ -1,14 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: gold-frontend-service
-  labels:
-    app: gold-frontend
+  name: gold-service
 spec:
-  type: ClusterIP
   selector:
-    app: gold-frontend
+    app: gold
   ports:
-    - protocol: TCP
-      port: 80
+    - port: 80
       targetPort: 80
+  type: ClusterIP
