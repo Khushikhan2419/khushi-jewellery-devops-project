@@ -1,11 +1,10 @@
-# Use lightweight NGINX image
 FROM nginx:alpine
 
-# Copy only main homepage files into NGINX html folder
+# Remove default nginx page
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy your app files
 COPY . /usr/share/nginx/html/
 
-# Expose port 80
 EXPOSE 80
-
-# Start NGINX
 CMD ["nginx", "-g", "daemon off;"]
