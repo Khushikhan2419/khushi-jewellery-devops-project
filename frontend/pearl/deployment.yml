@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: pearl
-          image: 049061799945.dkr.ecr.sa-east-1.amazonaws.com/shopping-site-pearl:<your_pearl_image_tag>
+          image: 049061799945.dkr.ecr.sa-east-1.amazonaws.com/shopping-site-pearl:cd9de10b88e1c5682394fb61d1f298de2491624b
           ports:
             - containerPort: 80
