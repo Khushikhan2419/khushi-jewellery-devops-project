@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khushi Pearl Elegance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', serif;
+        }
+
+        :root {
+            --primary-color: #f8f6f0;
+            --accent-color: #d4af37;
+            --dark-color: #2c2c2c;
+            --light-color: #ffffff;
+            --pearl-color: #f0f0f0;
+            --transition: all 0.5s ease;
+        }
+
+        body {
+            background-color: var(--primary-color);
+            color: var(--dark-color);
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--light-color);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            color: var(--accent-color);
+            margin-right: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 1.2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-icons i {
+            font-size: 1.3rem;
+            margin-left: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-icons i:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8f6f0 0%, #e8e6df 100%);
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.5s;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.8s;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--accent-color);
+            color: var(--light-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 1.1s;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: #c19b2a;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Floating Pearls Animation */
+        .floating-pearls {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .pearl {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle at 30% 30%, #fff, #f0f0f0);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            opacity: 0.7;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 6rem 5%;
+            background-color: var(--light-color);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .product-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 250px;
+            background-color: #f5f5f5;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-info p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+
+        .add-to-cart {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 5%;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: var(--transition);
+        }
+
+        .about-image.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-content {
+            flex: 1;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: var(--transition);
+        }
+
+        .about-content.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #444;
+            color: var(--light-color);
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about {
+                flex-direction: column;
+            }
+            
+            .about-image, .about-content {
+                transform: none;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem 5%;
+            }
+            
+            .nav-links {
+                margin: 1.5rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <img src="https://www.khushijewellers.com/cdn/shop/files/logo_a336b66f-e96d-45db-a199-cb4b613e0d3a_400x.png?v=1624533635" alt="Khushi Jewellers Logo" style="height: 40px; width: auto; margin-right: 0.5rem; vertical-align: middle;">
+                
+            </a>
+            
+            <div class="nav-icons">
+                <i class="fas fa-search"></i>
+                <i class="fas fa-shopping-bag"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="background: url('https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUyMjV2N2czNjB5bGxocGx1cXhlMzZ5bmM4d2U0bG5icHd4cjRqY3RoNiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/twQYPSiVdcq3s2KFyo/giphy.gif') center center/cover no-repeat;">
+        <div class="hero-content">
+            <h1>Timeless Pearl Elegance</h1>
+            <p>Discover our exclusive collection of premium pearl jewelry, handcrafted to perfection for the modern woman.</p>
+            <a href="#" class="cta-button">Explore Collection</a>
+        </div>
+        <div class="floating-pearls" id="pearls-container"></div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+        <div class="section-title">
+            <h2>Our Collections</h2>
+        </div>
+        <div class="product-grid">
+            <div class="product-card" data-title="Classic Pearl Necklace" data-price="299" data-img="https://cdn.fcglcdn.com/brainbees/images/products/583x720/20614409a.webp">
+                <div class="product-image">
+                    <img src="https://cdn.fcglcdn.com/brainbees/images/products/583x720/20614409a.webp" alt="Pearl Necklace">
+                </div>
+                <div class="product-info">
+                    <h3>Classic Pearl Necklace</h3>
+                    <p>Elegant single strand of freshwater pearls with a gold clasp.</p>
+                    <div class="product-price">
+                        <span class="price">$299</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card" data-title="Pearl Drop Earrings" data-price="189" data-img="https://m.media-amazon.com/images/I/81VhS-Hls-L._SY695_.jpg">
+                <div class="product-image">
+                    <img src="https://m.media-amazon.com/images/I/81VhS-Hls-L._SY695_.jpg" alt="Pearl Earrings">
+                </div>
+                <div class="product-info">
+                    <h3>Pearl Drop Earrings</h3>
+                    <p>Exquisite pearl drop earrings with diamond accents.</p>
+                    <div class="product-price">
+                        <span class="price">$189</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card" data-title="Pearl Tennis Bracelet" data-price="249" data-img="https://gildings.blob.core.windows.net/stock/55217-0-medium.jpg?v=63769732082170">
+                <div class="product-image">
+                    <img src="https://gildings.blob.core.windows.net/stock/55217-0-medium.jpg?v=63769732082170" alt="Pearl Bracelet">
+                </div>
+                <div class="product-info">
+                    <h3>Pearl Tennis Bracelet</h3>
+                    <p>Stunning bracelet with perfectly matched pearls in a classic design.</p>
+                    <div class="product-price">
+                        <span class="price">$249</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card" data-title="Pearl Statement Ring" data-price="159" data-img="https://cdn.caratlane.com/media/catalog/product/J/R/JR06781-YGS3P0_4_lar.jpg">
+                <div class="product-image">
+                    <img src="https://cdn.caratlane.com/media/catalog/product/J/R/JR06781-YGS3P0_4_lar.jpg" alt="Pearl Ring">
+                </div>
+                <div class="product-info">
+                    <h3>Pearl Statement Ring</h3>
+                    <p>Bold pearl ring with intricate gold detailing.</p>
+                    <div class="product-price">
+                        <span class="price">$159</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="checkout-btn" id="open-checkout" style="display:none;">Checkout</button>
+    </section>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="checkout-modal">
+        <div class="checkout-content">
+            <span class="close-checkout" id="close-checkout">&times;</span>
+            <h2>Your Cart</h2>
+            <div id="checkout-items"></div>
+            <div class="checkout-total">
+                <span>Total: $<span id="checkout-total">0</span></span>
+            </div>
+            <button class="final-checkout-btn">Proceed to Payment</button>
+        </div>
+    </div>
+
+    <style>
+        .checkout-btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 0.7rem 2rem;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 2rem auto 0 auto;
+            display: block;
+            transition: background 0.3s;
+        }
+        .checkout-btn:hover {
+            background: #dfbf6c;
+        }
+        .checkout-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: auto;
+            background: rgba(44,44,44,0.45);
+        }
+        .checkout-content {
+            background: #fff;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 440px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+            position: relative;
+        }
+        .close-checkout {
+            position: absolute;
+            right: 1.2rem;
+            top: 1rem;
+            font-size: 2rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+        #checkout-items {
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .checkout-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 12px;
+            margin-bottom: 12px;
+        }
+        .checkout-item img {
+            width: 46px;
+            height: 46px;
+            object-fit: cover;
+            border-radius: 7px;
+            margin-right: 12px;
+            border: 1px solid #edebeb;
+        }
+        .checkout-item-title {
+            font-weight: 600;
+            flex: 1;
+        }
+        .remove-checkout-item {
+            color: #d8000c;
+            cursor: pointer;
+            margin-left: 12px;
+            background: none;
+            border: none;
+            font-size: 1rem;
+        }
+        .checkout-total {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: right;
+        }
+        .final-checkout-btn {
+            width: 100%;
+            background: var(--accent-color);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 0.8rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .final-checkout-btn:hover {
+            background: #dfbf6c;
+        }
+        @media (max-width: 600px) {
+            .checkout-content { padding: 1rem; }
+        }
+    </style>
+    <script>
+        // Simple in-memory cart
+        let cart = [];
+
+        // Add to cart
+        document.addEventListener("DOMContentLoaded", function () {
+            const addToCartBtns = document.querySelectorAll('.add-to-cart');
+            const checkoutBtn = document.getElementById('open-checkout');
+            const checkoutModal = document.getElementById('checkout-modal');
+            const closeCheckoutBtn = document.getElementById('close-checkout');
+            const checkoutItemsDiv = document.getElementById('checkout-items');
+            const checkoutTotalSpan = document.getElementById('checkout-total');
+
+            // Add product to cart
+            addToCartBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const card = btn.closest('.product-card');
+                    const title = card.getAttribute('data-title');
+                    const price = Number(card.getAttribute('data-price'));
+                    const img = card.getAttribute('data-img');
+
+                    // If already in cart, increase quantity
+                    let found = cart.find(item => item.title === title);
+                    if (found) {
+                        found.qty += 1;
+                    } else {
+                        cart.push({ title, price, img, qty: 1 });
+                    }
+                    checkoutBtn.style.display = "block";
+                });
+            });
+
+            // Open checkout
+            checkoutBtn.addEventListener('click', function () {
+                renderCheckout();
+                checkoutModal.style.display = 'block';
+            });
+
+            // Close checkout
+            closeCheckoutBtn.addEventListener('click', function () {
+                checkoutModal.style.display = 'none';
+            });
+
+            // Close modal if click outside content
+            window.onclick = function(event) {
+                if (event.target == checkoutModal) {
+                    checkoutModal.style.display = "none";
+                }
+            };
+
+            // Remove item from cart
+            checkoutItemsDiv.addEventListener('click', function (e) {
+                if (e.target.classList.contains('remove-checkout-item')) {
+                    const idx = parseInt(e.target.dataset.index, 10);
+                    cart.splice(idx, 1);
+                    renderCheckout();
+                    if(cart.length === 0) {
+                        checkoutBtn.style.display = 'none';
+                        checkoutModal.style.display = "none";
+                    }
+                }
+            });
+
+            // Render checkout items
+            function renderCheckout() {
+                checkoutItemsDiv.innerHTML = '';
+                let total = 0;
+                cart.forEach((item, idx) => {
+                    total += item.price * item.qty;
+                    const div = document.createElement('div');
+                    div.className = 'checkout-item';
+                    div.innerHTML = `
+                        <img src="${item.img}" alt="${item.title}"/>
+                        <span class="checkout-item-title">${item.title} <span style="font-size:.875em; color:#666;">x${item.qty}</span></span>
+                        <span style="margin: 0 1.5em;">$${item.price * item.qty}</span>
+                        <button class="remove-checkout-item" data-index="${idx}" title="Remove">&times;</button>
+                    `;
+                    checkoutItemsDiv.appendChild(div);
+                });
+                checkoutTotalSpan.textContent = total;
+            }
+        });
+    </script>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="about-image">
+            <img src="https://mohsinkhawar.com/wp-content/uploads/2023/07/ay5a0866.jpg?w=2500&h=" alt="About Khushi Khushi Pearl Elegance">
+        </div>
+        <div class="about-content">
+            <h2>Our Story</h2>
+            <p>Khushi Pearl Elegance was founded with a vision to bring the timeless beauty of pearls to the modern world. Each piece in our collection is meticulously crafted by skilled artisans who share our passion for excellence.</p>
+            <p>We source only the finest pearls from sustainable farms around the world, ensuring that every piece not only looks beautiful but is also ethically produced.</p>
+            <p>Our commitment to quality and customer satisfaction has made us a trusted name in luxury pearl jewelry for over two decades.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Khushi Pearl Elegance</h3>
+                <p>Timeless elegance in every pearl. Crafting exquisite jewelry since 2001.</p>
+                <div class="social-icons">
+                    <a href="#" class="sidepop-dev" data-feature="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="sidepop-dev" data-feature="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="sidepop-dev" data-feature="Pinterest"><i class="fab fa-pinterest"></i></a>
+                    <a href="#" class="sidepop-dev" data-feature="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="#" class="sidepop-dev" data-feature="Necklaces">Necklaces</a></li>
+                    <li><a href="#" class="sidepop-dev" data-feature="Earrings">Earrings</a></li>
+                    <li><a href="#" class="sidepop-dev" data-feature="Bracelets">Bracelets</a></li>
+                    <li><a href="#" class="sidepop-dev" data-feature="Rings">Rings</a></li>
+                    <li><a href="#" class="sidepop-dev" data-feature="New Arrivals">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Care</h3>
+                <ul>
+                    <li><a href="#" class="sidepop-dev" data-feature="Contact Us">Contact Us</a></li>
+                    <li><a href="#" class="sidepop-dev" data-feature="Shipping & Returns">Shipping & Returns</a></li>
+                    <li><a href="#" class="sidepop-dev" data-feature="FAQ">FAQ</a></li>
+                    <li><a href="#" class="sidepop-dev" data-feature="Care Guide">Care Guide</a></li>
+                    <li><a href="#" class="sidepop-dev" data-feature="Size Guide">Size Guide</a></li>
+                </ul>
+            </div>
+
+            <!-- Side pop modal for under development features -->
+            <div id="sidepop-dev-modal" class="sidepop-dev-modal">
+                <div class="sidepop-dev-modal-content">
+                    <span class="sidepop-dev-close">&times;</span>
+                    <h3>Feature Under Development</h3>
+                    <p class="sidepop-dev-text">This concept is under development. Please connect with us.<br><br><strong>- Team Khushi</strong></p>
+                </div>
+            </div>
+            <style>
+                .sidepop-dev-modal {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    right: 0;
+                    width: 340px;
+                    height: 100%;
+                    background: #fff;
+                    box-shadow: -2px 0 22px rgba(0,0,0,0.13);
+                    z-index: 3000;
+                    transition: transform 0.3s ease;
+                    transform: translateX(100%);
+                }
+                .sidepop-dev-modal.active {
+                    display: block;
+                    transform: translateX(0%);
+                }
+                .sidepop-dev-modal-content {
+                    padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+                .sidepop-dev-close {
+                    position: absolute;
+                    top: 1rem;
+                    right: 1.2rem;
+                    font-size: 2rem;
+                    color: #d4af37;
+                    cursor: pointer;
+                }
+                .sidepop-dev-modal h3 {
+                    margin-top: 2.5rem;
+                    margin-bottom: .8rem;
+                    color: #2c2c2c;
+                }
+                .sidepop-dev-text {
+                    color: #555;
+                    font-size: 1.12rem;
+                }
+            </style>
+            <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var links = document.querySelectorAll('.sidepop-dev');
+                var modal = document.getElementById('sidepop-dev-modal');
+                var closeBtn = document.querySelector('.sidepop-dev-close');
+                var text = document.querySelector('.sidepop-dev-text');
+
+                links.forEach(function(link) {
+                    link.addEventListener('click', function(e){
+                        e.preventDefault();
+                        var feat = link.getAttribute('data-feature');
+                        text.innerHTML = "This concept is under development. Please connect with us.<br><br><strong>- Team Khushi</strong>";
+                        modal.classList.add('active');
+                    });
+                });
+
+                closeBtn.addEventListener('click', function(){
+                    modal.classList.remove('active');
+                });
+
+                window.addEventListener('click', function(event) {
+                    if (event.target === modal) {
+                        modal.classList.remove('active');
+                    }
+                });
+            });
+            </script>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Jewelry Street, NY</li>
+                    <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> info@khushipearlelegance.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Khushi Pearl Elegance. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Create floating pearls animation
+        function createFloatingPearls() {
+            const container = document.getElementById('pearls-container');
+            const pearlCount = 15;
+            
+            for (let i = 0; i < pearlCount; i++) {
+                const pearl = document.createElement('div');
+                pearl.classList.add('pearl');
+                
+                // Random position
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                
+                // Random size
+                const size = 10 + Math.random() * 15;
+                
+                // Random animation delay and duration
+                const delay = Math.random() * 5;
+                const duration = 10 + Math.random() * 10;
+                
+                pearl.style.left = `${posX}%`;
+                pearl.style.top = `${posY}%`;
+                pearl.style.width = `${size}px`;
+                pearl.style.height = `${size}px`;
+                pearl.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                
+                container.appendChild(pearl);
+            }
+        }
+        
+        // Scroll animations for product cards and about section
+        function handleScrollAnimations() {
+            const productCards = document.querySelectorAll('.product-card');
+            const aboutImage = document.querySelector('.about-image');
+            const aboutContent = document.querySelector('.about-content');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.classList.contains('product-card')) {
+                            entry.target.classList.add('visible');
+                        } else if (entry.target.classList.contains('about-image')) {
+                            entry.target.classList.add('visible');
+                        } else if (entry.target.classList.contains('about-content')) {
+                            entry.target.classList.add('visible');
+                        }
+                    }
+                });
+            }, observerOptions);
+            
+            productCards.forEach(card => {
+                observer.observe(card);
+            });
+            
+            observer.observe(aboutImage);
+            observer.observe(aboutContent);
+        }
+        
+        // Add to cart functionality
+        function setupAddToCart() {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productCard = this.closest('.product-card');
+                    const productName = productCard.querySelector('h3').textContent;
+                    const productPrice = productCard.querySelector('.price').textContent;
+                    
+                    // Animation effect
+                    this.textContent = 'Added!';
+                    this.style.backgroundColor = '#4CAF50';
+                    
+                    setTimeout(() => {
+                        this.textContent = 'Add to Cart';
+                        this.style.backgroundColor = '';
+                    }, 2000);
+                    
+                    // In a real application, you would add the product to a cart object/array
+                    console.log(`Added to cart: ${productName} - ${productPrice}`);
+                });
+            });
+        }
+        
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            createFloatingPearls();
+            handleScrollAnimations();
+            setupAddToCart();
+        });
+    </script>
+</body>
+</html>
