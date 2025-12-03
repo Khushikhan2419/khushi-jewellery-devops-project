@@ -3,13 +3,13 @@ kind: Ingress
 metadata:
   name: shop-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: nginx
   rules:
     - http:
         paths:
-          # MAIN HOME PAGE
+          # MAIN
           - path: /
             pathType: Prefix
             backend:
